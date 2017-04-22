@@ -1,0 +1,40 @@
+- name: Install Docker pre-reqs
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Add Docker apt-key
+  apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: present
+    update_cache: True
+
+- name: Create Docker group
+  group:
+    name: docker
+    state: present
+
+- name: Add admin to Docker group
+  user:
+    name: admin
+    group: docker
+
+- name: Automatically start Docker
+  systemd:
+    name: docker
+    state: started
+    enabled: True
