@@ -1,0 +1,1 @@
+docker run -d --rm -v /opt/aeonztps/tftpboot:/tftpboot -p 69:69/udp aeon-ztps-tftp
