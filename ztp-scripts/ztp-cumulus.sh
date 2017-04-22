@@ -41,9 +41,7 @@ function create_remote_user(){
 
     if [[ ! -e ${sudoer_file} ]]
     then
-        cp -r /home/cumulus /home/${REMOTE_USERNAME}
-        chown -R ${REMOTE_USERNAME}.${REMOTE_USERNAME} /home/${REMOTE_USERNAME}
-        useradd --shell /bin/bash ${REMOTE_USERNAME}
+        adduser --disabled-password --gecos "" ${REMOTE_USERNAME}
         usermod -p $(echo ${REMOTE_PASSWD} | openssl passwd -1 -stdin) ${REMOTE_USERNAME}
         echo "${REMOTE_USERNAME} ALL=(ALL) NOPASSWD:ALL" > ${sudoer_file}
     fi
@@ -125,11 +123,12 @@ function kickstart_aeon_ztp(){
 
 create_remote_user
 kickstart_aeon_ztp
-enable_mgmt_vrf
 
-if [[ ! is_cumulus_vx ]]; then
+if ! is_cumulus_vx; then
    install_license
 fi
+
+enable_mgmt_vrf
 
 # CUMULUS-AUTOPROVISIONING
 
