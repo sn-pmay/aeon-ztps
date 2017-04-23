@@ -58,6 +58,11 @@
     group: "{{ Aeon_group }}"
     mode: 755
 
+- name: Start Docker containers
+  shell: docker-compose up -d
+  args:
+    chdir: "{{ Install_dir }}/docker"
+
 #- name: Start containers
 #  docker_container:
 #    name: "{{ item }}"
