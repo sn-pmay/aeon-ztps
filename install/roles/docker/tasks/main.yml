@@ -38,3 +38,12 @@
     name: docker
     state: started
     enabled: True
+
+- name: Start containers
+  docker_container:
+    name: "{{ item }}"
+    image: "{{ item }}"
+    ports: "69:69/udp"
+    restart_policy: always
+    state: started
+    volumes:

@@ -1,0 +1,16 @@
+TODO: FIgure out where to put config and var files.
+TODO: Figure out how to easily change dhcp scopes.
+docker run -d \
+-v /opt/aeonztps/var/dhcpd.leases:/var/lib/dhcp/dhcpd.leases \
+-v /opt/aeonztps/etc/aeon_ztps_example_dhcpd.conf:/etc/dhcpd.conf \
+-v /opt/aeonztps/var/dhcpd.leases~:/var/lib/dhcp/dhcpd.leases~ \
+-p 67/udp \
+--net host \
+--restart always \
+aeon-ztps-dhcp
+
+-4: ipv4
+-f: foreground
+-d: log to stderr
+
+don't change config and lease file in docker command, just mount the volumes to the standard locations in the container

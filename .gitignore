@@ -94,3 +94,4 @@ Temporary Items
 /*.db
 *.sqlite
 *.retry
+!/var/
