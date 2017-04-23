@@ -15,9 +15,7 @@
     - ubuntu-base
     - aeon-ztp-server
     - docker
-    - docker_tftp
     - web-server
-    - docker_dhcp
 
   # Ansible requires python2, which is not installed by default on Ubuntu Xenial
   pre_tasks:
