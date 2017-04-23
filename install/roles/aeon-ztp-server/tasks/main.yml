@@ -60,15 +60,27 @@
     - /var/log/aeon-ztp
     - /var/run/aeon-ztp
 
+- name: Create tftpboot directory
+  file:
+    path: "{{ Install_dir }}/tftpboot"
+    state: directory
+    owner: "{{ Aeon_user }}"
+    group: "{{ Aeon_group }}"
+    mode: 755
+
 - name: copy ztp-scripts to tftpboot
-  copy: src="{{ TopDir }}/ztp-scripts/" dest={{ Install_dir }}/tftpboot
-        owner=nobody mode=777
+  copy:
+    src: "{{ TopDir }}/ztp-scripts/"
+    dest: "{{ Install_dir }}/tftpboot"
+    owner: "{{ Aeon_user }}"
+    group: "{{ Aeon_group }}"
+    mode: 777
 
 - name: symlink ztp-cumulus in downloads directory
-  file: state=link
-        src={{ Install_dir }}/tftpboot/ztp-cumulus.sh
-        dest={{ Install_dir }}/downloads/ztp-cumulus.sh
-
+  file:
+    state: link
+    src: "{{ Install_dir }}/tftpboot/ztp-cumulus.sh"
+    dest: "{{ Install_dir }}/downloads/ztp-cumulus.sh"
 
 - name: Build aeon-ztp from source
   shell: python setup.py sdist

@@ -19,9 +19,12 @@
 
 - name: Install Docker
   apt:
-    name: docker-ce
+    name: "{{ item }}"
     state: present
     update_cache: True
+  with_items:
+    - docker-ce
+    - docker-compose
 
 - name: Create Docker group
   group:
@@ -39,11 +42,27 @@
     state: started
     enabled: True
 
-- name: Start containers
-  docker_container:
-    name: "{{ item }}"
-    image: "{{ item }}"
-    ports: "69:69/udp"
-    restart_policy: always
-    state: started
-    volumes:
+#- name: Create Docker
+#  file:
+#    path: "{{ Install_dir }}/docker"
+#    state: directory
+#    owner: "{{ Aeon_user }}"
+#    group: "{{ Aeon_group }}"
+#    mode: 755
+
+- name: Copy docker files
+  copy:
+    src: "{{ playbook_dir }}/../docker/"
+    dest: "{{ Install_dir }}/"
+    owner: "{{ Aeon_user }}"
+    group: "{{ Aeon_group }}"
+    mode: 755
+
+#- name: Start containers
+#  docker_container:
+#    name: "{{ item }}"
+#    image: "{{ item }}"
+#    ports: "69:69/udp"
+#    restart_policy: always
+#    state: started
+#    volumes:

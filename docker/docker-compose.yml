@@ -1,0 +1,34 @@
+version: '2'
+services:
+#  rsyslog:
+#    restart: always
+#    build: ./rsyslog
+#    expose:
+#      - "514/tcp"
+#    logging:
+#      driver: syslog
+#      options:
+#        syslog-address: "tcp://localhost:514"
+  tftp:
+    restart: always
+    build: ./tftp
+    volumes:
+      - /opt/aeonztps/tftpboot:/tftpboot
+    expose:
+      - "69/udp"
+  dhcp:
+    restart: always
+    build: ./dhcp
+    network_mode: host
+    volumes:
+      - ./dhcp/dhcpd.leases:/var/lib/dhcp/dhcpd.leases
+      - ./dhcp/dhcpd.leases~:/var/lib/dhcp/dhcpd.leases~
+      - ./dhcp/dhcpd.conf:/etc/dhcpd.conf
+    expose:
+     - "67/udp"
+#    links:
+#      - "rsyslog"
+#    logging:
+#      driver: syslog
+#      options:
+#        syslog-address: "tcp://rsyslog:514"

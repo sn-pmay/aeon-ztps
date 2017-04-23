@@ -14,9 +14,10 @@
   roles:
     - ubuntu-base
     - aeon-ztp-server
-    - tftp-server
+    - docker
+    - docker_tftp
     - web-server
-    - dhcp-server
+    - docker_dhcp
 
   # Ansible requires python2, which is not installed by default on Ubuntu Xenial
   pre_tasks:
