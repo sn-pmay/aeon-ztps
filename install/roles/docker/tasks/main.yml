@@ -52,8 +52,8 @@
 
 - name: Copy docker files
   copy:
-    src: "{{ playbook_dir }}/../docker/"
-    dest: "{{ Install_dir }}/"
+    src: "docker"
+    dest: "{{ Install_dir }}"
     owner: "{{ Aeon_user }}"
     group: "{{ Aeon_group }}"
     mode: 755
