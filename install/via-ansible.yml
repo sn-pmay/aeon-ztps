@@ -12,10 +12,10 @@
     - vars/dhcp-server.yml
 
   roles:
-    - ubuntu-base
-    - aeon-ztp-server
+#    - ubuntu-base
+#    - aeon-ztp-server
     - docker
-    - web-server
+#    - web-server
 
   # Ansible requires python2, which is not installed by default on Ubuntu Xenial
   pre_tasks:

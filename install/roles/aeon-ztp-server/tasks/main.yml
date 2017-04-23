@@ -60,6 +60,14 @@
     - /var/log/aeon-ztp
     - /var/run/aeon-ztp
 
+- name: Create tftpboot directory
+  file:
+    path: "{{ Install_dir }}/tftpboot"
+    state: directory
+    owner: "{{ Aeon_user }}"
+    group: "{{ Aeon_group }}"
+    mode: 755
+
 - name: copy ztp-scripts to tftpboot
   copy:
     src: "{{ TopDir }}/ztp-scripts/"
