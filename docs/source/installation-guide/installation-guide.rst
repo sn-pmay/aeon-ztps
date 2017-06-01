@@ -31,7 +31,7 @@ Install Setup Checklist
     :emphasis:`optional` |br|
     |box| |sp| |sp| :strong:`Enable DHCP Service` |br|
 
-        Edit the file :literal:`install/vars/dhcp-server.yml` and change the :code:`DHCPS_enable` variable to
+        Edit the file :literal:`install/vars/host.yml` and change the :code:`DHCPS_enable` variable to
         :code:`yes`
 
     .. figure:: install-dhcp-yes.png
@@ -66,7 +66,7 @@ this writing.
         You will need the Vagrant "vbguest" pluging installed.  To install, use: "vagrant plugin install vagrant-vbguest"
 
     VirtualBox_ |br|
-        5.0.24, or later 5.0.x — use "VBoxManage --version" to check.  Note: For those running Mac OSX El Capital and
+        5.0.24, or later 5.0.x — use "VBoxManage --version" to check.  Note: For those running Mac OSX El Capitan and
         needing a VirtualBox update, you may need to disable Apple's
         System Integrity Protection, as described `here <http://www.macworld
         .com/article/2986118/security/how-to-modify-system-integrity-protection-in-el-capitan.html>`__
